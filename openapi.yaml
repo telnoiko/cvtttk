@@ -1,0 +1,42 @@
+openapi: 3.0.3
+info:
+  title: Archiver service - OpenAPI 3.0
+  description: |-
+    This is a simple Archiver service that will accept any number of files in request
+    and returned all of them zipped into one download.zip archive.
+  contact:
+    email: name@email.com
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/
+paths:
+  /compress:
+    post:
+      summary: upload a list of files
+      description: ''
+      operationId: uploadFiles
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                fileName:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+      responses:
+        '200':
+          description: zipped archive
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
+          headers:
+            Content-Disposition:
+              schema:
+                type: string
+                description: Used only with `application/zip` responses
+                example: attachment; filename="download.zip"
