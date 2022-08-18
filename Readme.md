@@ -1,16 +1,21 @@
 This is a test task to implement Archiver service which will accept
-a list of files via `form-data` http request.
+a list of files via `form-data` http request.  
 
-## Build
+[OpenApi Specification](openapi.yaml)
 
+## Build and Run
+Prerequisite is having Java 17 and Docker installed
+
+To run locally
 ```shell
-make build
+make buildLocal
+make runLocal
 ```
 
-## Run
-
-After executing the following command  
+To run as a Docker container
 ```shell
-make run
+make buildDocker
+make runDocker
 ```
-you can access web page for testing by visiting [http://localhost](http://localhost) 
+
+After service has started up access [http://localhost:8080](http://localhost:8080) for testing.
