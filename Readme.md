@@ -19,3 +19,10 @@ make runDocker
 ```
 
 After service has started up access [http://localhost:8080](http://localhost:8080) for testing.
+
+## Test
+
+To run component tests (cucumber tests + local app in docker)
+```shell
+make componentTest
+```

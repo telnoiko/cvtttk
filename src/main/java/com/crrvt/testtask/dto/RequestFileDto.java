@@ -1,4 +1,4 @@
-package com.correvate.testtask.dto;
+package com.crrvt.testtask.dto;
 
 import java.io.InputStream;
 

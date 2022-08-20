@@ -1,7 +1,7 @@
-package com.correvate.testtask.controller;
+package com.crrvt.testtask.controller;
 
-import com.correvate.testtask.mapper.MultipartFileMapper;
-import com.correvate.testtask.service.CompressionService;
+import com.crrvt.testtask.mapper.MultipartFileMapper;
+import com.crrvt.testtask.service.CompressionService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ContentDisposition;

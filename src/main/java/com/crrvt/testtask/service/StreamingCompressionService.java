@@ -1,7 +1,7 @@
-package com.correvate.testtask.service;
+package com.crrvt.testtask.service;
 
-import com.correvate.testtask.dto.RequestFileDto;
-import com.correvate.testtask.util.CompressionUtil;
+import com.crrvt.testtask.dto.RequestFileDto;
+import com.crrvt.testtask.util.CompressionUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

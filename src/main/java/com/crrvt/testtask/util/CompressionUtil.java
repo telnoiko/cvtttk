@@ -1,6 +1,6 @@
-package com.correvate.testtask.util;
+package com.crrvt.testtask.util;
 
-import com.correvate.testtask.dto.RequestFileDto;
+import com.crrvt.testtask.dto.RequestFileDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StreamUtils;

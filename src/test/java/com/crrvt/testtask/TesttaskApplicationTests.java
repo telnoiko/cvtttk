@@ -1,4 +1,4 @@
-package com.correvate.testtask;
+package com.crrvt.testtask;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

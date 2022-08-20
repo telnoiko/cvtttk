@@ -7,6 +7,9 @@ buildDocker:
 	./gradlew clean bootJar
 	docker build --build-arg JAR_FILE=build/libs/\*.jar -t archiver .
 
+componentTest:
+	./gradlew componentTest
+
 runLocal:
 	./gradlew bootRun
 

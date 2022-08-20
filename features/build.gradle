@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group 'com.crrvt'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation(platform("org.junit:junit-bom:5.9.0"))
+    testImplementation(platform("io.cucumber:cucumber-bom:7.6.0"))
+
+    testImplementation("io.cucumber:cucumber-java")
+    testImplementation("io.cucumber:cucumber-junit-platform-engine")
+    testImplementation("org.junit.platform:junit-platform-suite")
+    testImplementation("org.junit.jupiter:junit-jupiter")
+
+    implementation 'net.masterthought:cucumber-reporting:5.7.2'
+}
+
+task componentTest(type: Test) {
+    group('cucumber')
+
+    outputs.upToDateWhen { false }
+    testLogging.showStandardStreams = true
+
+    useJUnitPlatform()
+    systemProperty("cucumber.junit-platform.naming-strategy", "long")
+}

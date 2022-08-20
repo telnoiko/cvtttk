@@ -1,6 +1,6 @@
-package com.correvate.testtask.service;
+package com.crrvt.testtask.service;
 
-import com.correvate.testtask.dto.RequestFileDto;
+import com.crrvt.testtask.dto.RequestFileDto;
 
 import java.io.IOException;
 import java.io.OutputStream;
