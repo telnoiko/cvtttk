@@ -13,11 +13,16 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:5.9.0"))
     testImplementation(platform("io.cucumber:cucumber-bom:7.6.0"))
 
+    testImplementation 'io.rest-assured:rest-assured:5.1.1'
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testImplementation 'ch.qos.logback:logback-classic:1.2.11'
+
     testImplementation("io.cucumber:cucumber-java")
     testImplementation("io.cucumber:cucumber-junit-platform-engine")
+    testImplementation("io.cucumber:cucumber-picocontainer")
     testImplementation("org.junit.platform:junit-platform-suite")
     testImplementation("org.junit.jupiter:junit-jupiter")
-
     implementation 'net.masterthought:cucumber-reporting:5.7.2'
 }
 

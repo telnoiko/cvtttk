@@ -16,5 +16,5 @@ import static io.cucumber.junit.platform.engine.Constants.PLUGIN_PUBLISH_QUIET_P
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "html:build/reports/tests/componentTest/cucumber-report.html")
 @ConfigurationParameter(key = PLUGIN_PUBLISH_QUIET_PROPERTY_NAME, value = "true")
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "com.crrvt.testtask")
-public class RunCucumberTest {
+public class CucumberRunner {
 }
