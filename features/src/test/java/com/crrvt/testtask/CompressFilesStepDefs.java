@@ -7,13 +7,18 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hamcrest.core.StringEndsWith;
+import org.apache.commons.io.FileUtils;
+import org.hamcrest.core.StringContains;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
 @AllArgsConstructor
@@ -47,7 +52,7 @@ public class CompressFilesStepDefs {
   @And("the extension of downloaded file is {string}")
   public void theExtensionOfDownloadedFileIsZip(String extension) {
     ctx.getSctx().getCompressResponse().getResponse()
-        .header("Content-Disposition", StringEndsWith.endsWith(extension));
+        .header("Content-Disposition", StringContains.containsStringIgnoringCase(extension));
   }
 
   @And("^downloaded archive contains all files from request$")
@@ -56,7 +61,19 @@ public class CompressFilesStepDefs {
     var responseInputStream = ctx.getSctx().getCompressResponse().getResponse().extract().body().asInputStream();
     var unzippedFiles = ctx.getResourceUtil().unzip(responseInputStream);
 
-    assertThat(filesToCompress, containsInAnyOrder(unzippedFiles));
+    assertThat(filesToCompress.size(), is(equalTo(unzippedFiles.size())));
+    assertFilesEqual(filesToCompress, unzippedFiles);
+  }
+
+  private static void assertFilesEqual(List<File> filesToCompress, Map<String, File> unzippedFiles) {
+    filesToCompress.forEach(requestedFile -> {
+      File unzippedFile = unzippedFiles.get(requestedFile.getName());
+      try {
+        assertTrue(FileUtils.contentEquals(requestedFile, unzippedFile));
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+    });
   }
 
 }
