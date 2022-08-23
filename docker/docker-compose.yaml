@@ -1,0 +1,24 @@
+version: "3.5"
+services:
+  archiver:
+    image: archiver
+    networks:
+      - cloud
+    ports:
+      - 8080:8080
+    expose:
+      - 8080
+  testrunner:
+    image: arm64v8/gradle:7.5-jdk17
+    entrypoint: "sh"
+    volumes:
+      - ../:/workspace:rw
+    working_dir: /workspace
+    command: "docker/wait-for http://archiver:8080/health -t 5 -- gradle :features:alphaTest -DarchiverUrl=http://archiver -DarchiverPort=8080"
+    networks:
+      - cloud
+    depends_on:
+      - archiver
+networks:
+  cloud:
+    name: "${COMPOSE_PROJECT_NAME}"

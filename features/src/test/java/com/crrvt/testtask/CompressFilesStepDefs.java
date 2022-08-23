@@ -28,38 +28,38 @@ public class CompressFilesStepDefs {
 
   @Given("^files are:$")
   public void givenTheFollowingFiles(List<String> names) {
-    var filesToCompress = ctx.getResourceUtil().load(names);
-    ctx.getSctx().getCompressRequest().setFiles(filesToCompress);
+    var filesToCompress = ctx.resourceUtil().load(names);
+    ctx.sctx().compressRequest().setFiles(filesToCompress);
   }
 
   @And("the Content-Type header is {string}")
   public void requestHeaderIsMultipartFormData(String contentType) {
-    ctx.getSctx().getCompressRequest().setContentType(contentType);
+    ctx.sctx().compressRequest().setContentType(contentType);
   }
 
   @When("^I request to compress the files$")
   public void iRequestToUploadTheFiles() {
-    var compressRequest = ctx.getSctx().getCompressRequest();
-    var response = ctx.getCompressorClient().compress(compressRequest);
-    ctx.getSctx().getCompressResponse().setResponse(response);
+    var compressRequest = ctx.sctx().compressRequest();
+    var response = ctx.compressorClient().compress(compressRequest);
+    ctx.sctx().compressResponse().setResponse(response);
   }
 
   @Then("the response status is {int}")
   public void theResponseIs(int code) {
-    ctx.getSctx().getCompressResponse().getResponse().statusCode(code);
+    ctx.sctx().compressResponse().getResponse().statusCode(code);
   }
 
   @And("the extension of downloaded file is {string}")
   public void theExtensionOfDownloadedFileIsZip(String extension) {
-    ctx.getSctx().getCompressResponse().getResponse()
+    ctx.sctx().compressResponse().getResponse()
         .header("Content-Disposition", StringContains.containsStringIgnoringCase(extension));
   }
 
   @And("^downloaded archive contains all files from request$")
   public void downloadedFileHasFilesInside() throws IOException {
-    var filesToCompress = ctx.getSctx().getCompressRequest().getFiles();
-    var responseInputStream = ctx.getSctx().getCompressResponse().getResponse().extract().body().asInputStream();
-    var unzippedFiles = ctx.getResourceUtil().unzip(responseInputStream);
+    var filesToCompress = ctx.sctx().compressRequest().getFiles();
+    var responseInputStream = ctx.sctx().compressResponse().getResponse().extract().body().asInputStream();
+    var unzippedFiles = ctx.resourceUtil().unzip(responseInputStream);
 
     assertThat(filesToCompress.size(), is(equalTo(unzippedFiles.size())));
     assertFilesEqual(filesToCompress, unzippedFiles);

@@ -1,30 +1,41 @@
 This is a test task to implement Archiver service which will accept
 a list of files via `form-data` http request.  
 
-[OpenApi Specification](openapi.yaml)
+[OpenApi Specification](openapi.yaml)  
+Service UI [http://localhost:8080](http://localhost:8080)  
+Alpha tests reports: [Cucumber](features/build/reports/tests/alphaTest/alpha-report.html), [JUnit](features/build/reports/tests/alphaTest/index.html).  
+See [What is Alpha, Beta, and Gamma testing](https://spectsteps.substack.com/p/difference-between-alpha-testing)
 
 ## Prerequisite 
 - Java 17 
 - Docker
 
 ## Build and Run
-To run locally
+
+Local run
 ```shell
-make buildLocal
-make runLocal
+make build
+make run
 ```
 
-To run as a Docker container.  
-After service has started up access [http://localhost:8080](http://localhost:8080) for testing.
+Dockerized run  
 ```shell
 make buildDocker
 make runDocker
 ```
 
 ## Test
-To run component tests (cucumber tests + local app in docker).  
-Reports can be found in `features/reports/component-report.html`
+
+Alpha tests run, as cucumber tests and local app in docker.  
+This task will take longer to run first time.
 ```shell
-make componentTest
+make alphaDocker
 ```
 
+Standalone run from IDE is also possible for both Alpha tests and app.  
+
+Run tests against service running locally
+```shell
+make run
+make alpha
+```

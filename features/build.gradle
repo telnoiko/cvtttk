@@ -24,14 +24,15 @@ dependencies {
     testImplementation("io.cucumber:cucumber-picocontainer")
     testImplementation("org.junit.platform:junit-platform-suite")
     testImplementation("org.junit.jupiter:junit-jupiter")
-    implementation 'net.masterthought:cucumber-reporting:5.7.2'
 }
 
-task componentTest(type: Test) {
+task alphaTest(type: Test) {
     group('cucumber')
 
     outputs.upToDateWhen { false }
     testLogging.showStandardStreams = true
+    systemProperty "archiverUrl", System.getProperty("archiverUrl", "http://localhost")
+    systemProperty "archiverPort", System.getProperty("archiverPort", "8080")
 
     useJUnitPlatform()
     systemProperty("cucumber.junit-platform.naming-strategy", "long")

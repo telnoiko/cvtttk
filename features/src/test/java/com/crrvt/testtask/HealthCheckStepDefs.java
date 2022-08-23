@@ -14,13 +14,13 @@ public class HealthCheckStepDefs {
 
   @When("I check health status")
   public void iRequestToHealthEndpoint() {
-    var response = ctx.getCompressorClient().health();
-    ctx.getSctx().getCompressResponse().setResponse(response);
+    var response = ctx.compressorClient().health();
+    ctx.sctx().compressResponse().setResponse(response);
   }
 
   @And("the response value at path {string} equals {string}")
   public void theResponseBodyStatusIsUP(String path, String value) {
-    ValidatableResponse response = ctx.getSctx().getCompressResponse().getResponse();
+    ValidatableResponse response = ctx.sctx().compressResponse().getResponse();
     response.body(path, Matchers.equalToIgnoringCase(value));
   }
 }
