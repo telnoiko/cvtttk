@@ -21,9 +21,6 @@ import java.util.List;
 @AllArgsConstructor
 public class UploadController {
 
-  private final MultipartFileMapper mapper;
-  private final CompressionService compressionService;
-
   private static final HttpHeaders UPLOAD_HEADERS = new HttpHeaders();
 
   static {
@@ -31,12 +28,14 @@ public class UploadController {
     UPLOAD_HEADERS.setContentDisposition(ContentDisposition.attachment().filename("download.zip").build());
   }
 
+  private final MultipartFileMapper mapper;
+  private final CompressionService compressionService;
+
   @PostMapping("/compress")
   public ResponseEntity<StreamingResponseBody> compressFiles(
       @RequestPart(name = "fileName") List<MultipartFile> multipartFiles) {
     log.info("Received {} files to compress", multipartFiles.size());
-    final var files = multipartFiles.stream()
-        .map(mapper::mapToFileDto).toList();
+    final var files = multipartFiles.stream().map(mapper::mapToFileDto).toList();
     return ResponseEntity.ok()
         .headers(UPLOAD_HEADERS)
         .body(outputStream -> compressionService.compress(files, outputStream));

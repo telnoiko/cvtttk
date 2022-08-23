@@ -4,6 +4,7 @@ import com.crrvt.testtask.dto.RequestFileDto;
 import com.crrvt.testtask.util.CompressionUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -13,7 +14,8 @@ import java.util.List;
 @Slf4j
 @Service
 @AllArgsConstructor
-public class StreamingCompressionService implements CompressionService {
+@ConditionalOnProperty(name="archiver.persist", havingValue = "false", matchIfMissing = true)
+public class InMemoryCompressionService implements CompressionService {
 
   public CompressionUtil compressor;
 
