@@ -20,7 +20,7 @@ public class DiskRepository implements ArchiveRepository {
 
   @Override
   public File save(final List<RequestFileDto> files) throws IOException {
-    final var archiveFile = new File(String.valueOf(System.currentTimeMillis()) + ".zip");
+    final var archiveFile = new File(System.currentTimeMillis() + ".zip");
     log.info("Writing into {}", archiveFile.getAbsolutePath());
     final var archiveStream = new FileOutputStream(archiveFile);
     compressor.compress(files, archiveStream);
