@@ -1,10 +1,11 @@
-This is a test task to implement Archiver service which will accept
-a list of files via `form-data` http request and return them archived.  
+This is a simple service that archives files that were sent to it. It accepts
+a list of files via `form-data` http request and returns compressed archive.  
 
-[OpenApi Specification](openapi.yaml)  
-Service UI [http://localhost:8080](http://localhost:8080)  
+See [test UI](https://ko7ko-archiver.herokuapp.com) at free Heroku acc.  
+[OpenApi Specification](openapi.yaml).  
+Service UI [http://localhost:8080](http://localhost:8080).  
 Alpha tests reports: [Cucumber](features/build/reports/tests/alphaTest/alpha-report.html), [JUnit](features/build/reports/tests/alphaTest/index.html).  
-See [What is Alpha, Beta, and Gamma testing](https://spectsteps.substack.com/p/difference-between-alpha-testing)
+See [What is Alpha, Beta, and Gamma testing](https://spectsteps.substack.com/p/difference-between-alpha-testing).
 
 ## Prerequisites
 - Java 17 
