@@ -1,11 +1,9 @@
 This is a simple service that archives files that were sent to it. It accepts
 a list of files via `form-data` http request and returns compressed archive.  
 
-See [test UI](https://ko7ko-archiver.herokuapp.com) at free Heroku acc.  
+Test UI available at [https://ko7ko-archiver.herokuapp.com](https://ko7ko-archiver.herokuapp.com).  
+
 [OpenApi Specification](openapi.yaml).  
-Service UI [http://localhost:8080](http://localhost:8080).  
-Alpha tests reports: [Cucumber](features/build/reports/tests/alphaTest/alpha-report.html), [JUnit](features/build/reports/tests/alphaTest/index.html).  
-See [What is Alpha, Beta, and Gamma testing](https://spectsteps.substack.com/p/difference-between-alpha-testing).
 
 ## Prerequisites
 - Java 17 
@@ -13,7 +11,7 @@ See [What is Alpha, Beta, and Gamma testing](https://spectsteps.substack.com/p/d
 
 ## Build and Run
 
-Local run
+Local run, access test UI at [http://localhost:8080](http://localhost:8080).
 ```shell
 make build
 make run
@@ -28,18 +26,20 @@ make runDocker
 ## Test
 
 Alpha tests run, as cucumber tests and local app in docker.  
-This task will take longer to run first time.
+This task will take longer to run the first time.
 ```shell
 make alphaDocker
 ```
 
 Standalone run from IDE is also possible for both Alpha tests and app.  
 
-Run tests against service running locally
+Run tests against service both running locally.  
+Reports: [alpha cucumber](features/build/reports/tests/alphaTest/alpha-report.html), [alpha JUnit](features/build/reports/tests/alphaTest/index.html).  
+See [What is Alpha, Beta, and Gamma testing](https://spectsteps.substack.com/p/difference-between-alpha-testing).  
 ```shell
 make run
 make alpha
 ```
 
 ## Configuration
-Please see app specific configuration options in [application.properties](src/main/resources/application.properties) file.
+Configuration options are located in [application.properties](src/main/resources/application.properties) file.
